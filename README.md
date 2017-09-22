@@ -1,4 +1,54 @@
 # VINS-Mono
+
+[MYNT EYE SDK]: https://github.com/slightech/MYNT-EYE-SDK
+[MYNT-EYE-ROS-Wrapper]: https://github.com/slightech/MYNT-EYE-ROS-Wrapper
+[MYNT-EYE-VINS-Sample]: https://github.com/slightech/MYNT-EYE-VINS-Sample
+
+If you wanna run VINS-Mono with MYNT EYE camera, please follow the steps below:
+
+1. Download [MYNT EYE SDK][] and install.
+2. Download [MYNT-EYE-ROS-Wrapper][] and catkin_make.
+3. Follow the normal procedure to install VINS-Mono.
+4. Update `distortion_parameters` and `projection_parameters` in `<vins>/config/mynteye/mynteye_config.yaml`.
+    - You could find the default calibration file in `<sdk>/settings/SN*.conf` after you preview the camera.
+5. Run ROS-Wrapper & VINS-Mono to start.
+
+---
+
+Install ROS Kinetic conveniently:
+
+```
+cd ~
+wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh && \
+chmod 755 ./ros_install.sh && bash ./ros_install.sh catkin_ws kinetic
+```
+
+Clone [MYNT-EYE-ROS-Wrapper][] & [MYNT-EYE-VINS-Sample][] and catkin_make:
+
+```
+cd ~/catkin_ws/src
+git clone https://github.com/slightech/MYNT-EYE-ROS-Wrapper.git
+git clone -b mynteye https://github.com/slightech/MYNT-EYE-VINS-Sample.git
+cd ..
+catkin_make
+source ~/catkin_ws/devel/setup.bash
+```
+
+Run VINS-Mono with MYNT EYE camera:
+
+```
+cd ~/catkin_ws
+
+roscore
+
+roslaunch mynteye_ros_wrapper mynt_camera.launch
+
+roslaunch vins_estimator vins_rviz.launch
+roslaunch vins_estimator mynteye.launch
+```
+
+---
+
 ## A Robust and Versatile Monocular Visual-Inertial State Estimator
 
 VINS-Mono is a real-time SLAM framework for **Monocular Visual-Inertial Systems**. It uses an optimization-based sliding window formulation for providing high-accuracy visual-inertial odometry. It features efficient IMU pre-integration with bias correction, automatic estimator initialization, online extrinsic calibration, failure detection and recovery, loop detection, and global pose graph optimization. VINS-Mono is primarily designed for state estimation and feedback control of autonomous drones, but it is also capable of providing accurate localization for AR applications. This code runs on **Linux**, and is fully integrated with **ROS**. For **iOS** mobile implementation, please go to [VINS-Mobile](https://github.com/HKUST-Aerial-Robotics/VINS-Mobile).
