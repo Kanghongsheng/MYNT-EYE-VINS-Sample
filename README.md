@@ -112,7 +112,7 @@ additional ROS pacakge
 ```
     sudo apt-get install ros-YOUR_DISTRO-cv-bridge ros-YOUR_DISTRO-tf ros-YOUR_DISTRO-message-filters ros-YOUR_DISTRO-image-transport
 ```
-<<<<<<< HEAD
+
 If you install ROS Kinetic, please update opencv3 with
 ```
     sudo apt-get install ros-kinetic-opencv3
@@ -120,14 +120,7 @@ If you install ROS Kinetic, please update opencv3 with
 
 1.2. **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html), remember to **make install**.
-(Our testing environment: Ubuntu 14.04, ROS Indigo, OpenCV 2.4.8, Eigen 3.2.0)
-=======
-
-
-1.2. **Ceres Solver**
-Follow [Ceres Installation](http://ceres-solver.org/installation.html), remember to **make install**.
-(Our testing environment: Ubuntu 16.04, ROS Kinetic, OpenCV 3.3.1, Eigen 3.3.3) 
->>>>>>> github/master
+(Our testing environment: Ubuntu 16.04, ROS Kinetic, OpenCV 3.3.1, Eigen 3.3.3)
 
 ## 2. Build VINS-Mono on ROS
 Clone the repository and catkin_make:
@@ -148,11 +141,7 @@ Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=km
 ```
     roslaunch vins_estimator euroc.launch
     roslaunch vins_estimator vins_rviz.launch
-<<<<<<< HEAD
-    rosbag play YOUR_PATH_TO_DATASET/MH_05_difficult.bag
-=======
-    rosbag play YOUR_PATH_TO_DATASET/MH_01_easy.bag 
->>>>>>> github/master
+    rosbag play YOUR_PATH_TO_DATASET/MH_01_easy.bag
 ```
 (If you fail to open vins_rviz.launch, just open an empty rviz, then load the config file: file -> Open Config-> YOUR_VINS_FOLDER/config/vins_rviz_config.rviz)
 
@@ -160,15 +149,9 @@ Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=km
 ```
     roslaunch benchmark_publisher publish.launch  sequence_name:=MH_05_difficult
 ```
-<<<<<<< HEAD
  (Green line is VINS result, red line is ground truth).
 
-3.4 (Optional) You can even run EuRoC **without extrinsic parameters** between camera and IMU. We will calibrate them online. Replace the first command with:
-=======
- (Green line is VINS result, red line is ground truth). 
- 
 3.1.3 (Optional) You can even run EuRoC **without extrinsic parameters** between camera and IMU. We will calibrate them online. Replace the first command with:
->>>>>>> github/master
 ```
     roslaunch vins_estimator euroc_no_extrinsic_param.launch
 ```
@@ -221,18 +204,9 @@ For rolling shutter camera (carefully calibrated, reprojection error under 0.5 p
 
 5.6 Other parameter settings: Details are included in the config file.
 
-<<<<<<< HEAD
-5.5 Performance on different devices:
+5.7 Performance on different devices:
 
-(global shutter camera + synchronized high-end IMU, e.g. VI-Sensor) > (global shutter camera + synchronized low-end IMU, e.g. camera+DJI A3) > (global camera + unsync high frequency IMU) > (global camera + unsync low frequency IMU) > (rolling camera + unsync low frequency IMU).
-
-**DO NOT** start with a rolling shutter camera and unsync IMU (such as DJI M100 + Logitech web camera) at beginning.
-=======
-5.7 Performance on different devices: 
-
-(global shutter camera + synchronized high-end IMU, e.g. VI-Sensor) > (global shutter camera + synchronized low-end IMU) > (global camera + unsync high frequency IMU) > (global camera + unsync low frequency IMU) > (rolling camera + unsync low frequency IMU). 
-
->>>>>>> github/master
+(global shutter camera + synchronized high-end IMU, e.g. VI-Sensor) > (global shutter camera + synchronized low-end IMU) > (global camera + unsync high frequency IMU) > (global camera + unsync low frequency IMU) > (rolling camera + unsync low frequency IMU).
 
 ## 6. Acknowledgements
 We use [ceres solver](http://ceres-solver.org/) for non-linear optimization and [DBoW2](https://github.com/dorian3d/DBoW2) for loop detection, and a generic [camera model](https://github.com/hengli/camodocal).
